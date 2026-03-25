@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zahangir Resume</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 18mm;
+      }
+
+      :root {
+        --ink: #05080f;
+        --muted: #2d3646;
+        --line: rgba(2, 6, 23, 0.12);
+        --accent: #6d28d9;
+        --accent2: #2563eb;
+        --paper: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
+        color: var(--ink);
+        background: #0b1220;
+        padding: 24px;
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        background: var(--paper);
+        border-radius: 16px;
+        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+        overflow: hidden;
+      }
+
+      .header {
+        padding: 26px 28px 18px;
+        background: linear-gradient(135deg, rgba(109, 40, 217, 0.10), rgba(37, 99, 235, 0.08));
+        border-bottom: 1px solid var(--line);
+      }
+
+      .headerInner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .avatar {
+        width: 118px;
+        height: 118px;
+        border-radius: 999px;
+        padding: 4px;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+        flex: 0 0 auto;
+      }
+
+      .avatarInner {
+        width: 100%;
+        height: 100%;
+        border-radius: 999px;
+        overflow: hidden;
+        background: #0b1220;
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        display: grid;
+        place-items: center;
+        position: relative;
+      }
+
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .initials {
+        position: absolute;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        color: #e9d5ff;
+        font-size: 28px;
+        background: radial-gradient(70px 70px at 30% 30%, rgba(167, 139, 250, 0.35), transparent 60%),
+          radial-gradient(70px 70px at 70% 70%, rgba(99, 102, 241, 0.30), transparent 60%),
+          linear-gradient(180deg, #0b1220, #111a33);
+      }
+
+      .avatar.noimg .initials {
+        display: flex;
+      }
+
+      .name {
+        font-size: 28px;
+        line-height: 1.1;
+        font-weight: 950;
+        letter-spacing: -0.02em;
+        margin: 0;
+        color: #000;
+      }
+
+      .roleTitle {
+        margin-top: 6px;
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.72);
+      }
+
+      .meta {
+        margin-top: 10px;
+        display: grid;
+        gap: 6px;
+        color: var(--muted);
+        font-size: 12.5px;
+      }
+      .meta b {
+        color: #000;
+        font-weight: 900;
+      }
+
+      .metaRow {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .icon {
+        width: 14px;
+        height: 14px;
+        flex: 0 0 auto;
+        color: rgba(109, 40, 217, 0.95);
+        margin-top: 2px;
+      }
+
+      .content {
+        padding: 18px 28px 26px;
+      }
+
+      .section {
+        margin-top: 14px;
+      }
+
+      .section:first-child {
+        margin-top: 0;
+      }
+
+      .sectionTitle {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        font-weight: 950;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.90);
+        margin: 0 0 8px;
+      }
+
+      .sectionTitle::before {
+        content: "";
+        height: 9px;
+        width: 9px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+      }
+
+      .summary {
+        margin: 0;
+        color: rgba(0, 0, 0, 0.84);
+        font-size: 13.2px;
+        line-height: 1.55;
+      }
+
+      .bullets {
+        margin: 0;
+        padding-left: 18px;
+        color: rgba(0, 0, 0, 0.84);
+        font-size: 13.2px;
+        line-height: 1.55;
+      }
+
+      .bullets li + li {
+        margin-top: 6px;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px 12px;
+        background: linear-gradient(180deg, rgba(2, 6, 23, 0.015), rgba(2, 6, 23, 0.0));
+      }
+
+      .cardTop {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: baseline;
+      }
+
+      .cardTitle {
+        font-weight: 950;
+        color: #000;
+        font-size: 13.4px;
+      }
+
+      .cardMeta {
+        font-size: 12.5px;
+        color: rgba(0, 0, 0, 0.68);
+        white-space: nowrap;
+        font-weight: 800;
+      }
+
+      /* Compact education */
+      .eduList {
+        display: grid;
+        gap: 6px;
+      }
+
+      .eduRow {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: baseline;
+        padding: 8px 10px;
+        border: 1px solid rgba(2, 6, 23, 0.10);
+        border-radius: 10px;
+        background: #fff;
+      }
+
+      .eduLeft {
+        min-width: 0;
+      }
+
+      .eduDegree {
+        font-weight: 950;
+        color: #000;
+        font-size: 13px;
+        line-height: 1.25;
+      }
+
+      .eduSchool {
+        margin-top: 2px;
+        color: rgba(0, 0, 0, 0.78);
+        font-size: 12.5px;
+        line-height: 1.35;
+      }
+
+      .eduRight {
+        text-align: right;
+        color: rgba(0, 0, 0, 0.72);
+        font-size: 12.5px;
+        white-space: nowrap;
+        font-weight: 900;
+      }
+
+      .grid2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .declFooter {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        margin-top: 12px;
+      }
+
+      .sigBlock {
+        min-width: 220px;
+      }
+
+      .sigLabel {
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.75);
+        font-weight: 950;
+        margin-bottom: 6px;
+      }
+
+      .sigLine {
+        width: 260px;
+        max-width: 100%;
+        border-bottom: 1px solid rgba(2, 6, 23, 0.35);
+        height: 14px;
+      }
+
+      @media print {
+        body {
+          background: #fff;
+          padding: 0;
+        }
+        .page {
+          box-shadow: none;
+          border-radius: 0;
+          width: 100%;
+          min-height: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page" role="document" aria-label="Resume">
+      <header class="header">
+        <div class="headerInner">
+          <div>
+            <h1 class="name">Kazi Zahangir Hossain</h1>
+            <div class="roleTitle">Medical Promotion Officer</div>
+            <div class="meta">
+              <div class="metaRow">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
+                  <path
+                    d="M12 22s7-4.5 7-12a7 7 0 1 0-14 0c0 7.5 7 12 7 12Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                  <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="2" />
+                </svg>
+                <div><b>Address:</b> Mingram, Abaipur-7321, Shailkupa, Jhenaidah, Bangladesh</div>
+              </div>
+              <div class="metaRow">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none">
+                  <path
+                    d="M21 16.5v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.5 4.2 2 2 0 0 1 3.5 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.45 2.1L7.9 9.1a16 16 0 0 0 7 7l.7-.7a2 2 0 0 1 2.1-.45c.8.3 1.7.5 2.6.6A2 2 0 0 1 21 16.5Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <div><b>Phone:</b> 01949243187 &nbsp;&nbsp; <b>Email:</b> zahangir352116@gmail.com</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="avatar noimg" aria-label="Profile photo">
+            <div class="avatarInner">
+              <img
+                src="file:///C:/Users/USER/.cursor/projects/d-Web-ShamimKazi/assets/c__Users_USER_AppData_Roaming_Cursor_User_workspaceStorage_dce8d87a241c385a2485925b0dab0c35_images_Zahangir-a0e2de6d-d3c0-47a6-b03f-1dc00279ad2e.png"
+                alt="Profile photo"
+                onload="this.parentElement.parentElement.classList.remove('noimg')"
+                onerror="this.style.display='none'; this.parentElement.parentElement.classList.add('noimg')"
+              />
+              <div class="initials" aria-hidden="true">ZH</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="content">
+        <section class="section">
+          <h2 class="sectionTitle">Professional Summary</h2>
+          <p class="summary">
+            Medical Promotion Officer (MPO) with 2 years of experience in territory management, doctor engagement, and prescription audit. Skilled in
+            scientific detailing and relationship building with healthcare professionals, with a focus on ethical promotion and consistent field
+            execution.
+          </p>
+        </section>
+
+        <section class="section">
+          <h2 class="sectionTitle">Key Skills</h2>
+          <ul class="bullets">
+            <li>Territory management, call planning, and daily route execution</li>
+            <li>Doctor engagement: one-to-one meetings, scientific seminars, and product detailing</li>
+            <li>Prescription audit, market intelligence, and competitor monitoring</li>
+            <li>Reporting and documentation using Microsoft Office</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2 class="sectionTitle">Professional Experience</h2>
+          <div class="card">
+            <div class="cardTop">
+              <div class="cardTitle">Medical Promotion Officer (MPO) — Ibn Sina Pharmaceutical Industry Ltd.</div>
+              <div class="cardMeta">2 Years</div>
+            </div>
+            <ul class="bullets" style="margin-top: 10px">
+              <li>Managed sales and promotional activities in Pangsha (Rajbari) and Gopalganj Sadar.</li>
+              <li>Currently overseeing field operations in Tungipara (Gopalganj).</li>
+              <li>Conducted scientific seminars and regular one-to-one meetings with healthcare professionals.</li>
+              <li>Performed prescription audits to monitor market share and competitor activity.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="sectionTitle">Education</h2>
+          <div class="eduList">
+            <div class="eduRow">
+              <div class="eduLeft">
+                <div class="eduDegree">M.A. (English)</div>
+                <div class="eduSchool">Govt. Rajendra College, Faridpur (National University) · CGPA 2.42 / 4.00</div>
+              </div>
+              <div class="eduRight">2019</div>
+            </div>
+            <div class="eduRow">
+              <div class="eduLeft">
+                <div class="eduDegree">B.A. (Hons) (English)</div>
+                <div class="eduSchool">Govt. Rajendra College, Faridpur (National University) · CGPA 2.48 / 4.00</div>
+              </div>
+              <div class="eduRight">2017</div>
+            </div>
+            <div class="eduRow">
+              <div class="eduLeft">
+                <div class="eduDegree">H.S.C. (Humanities)</div>
+                <div class="eduSchool">Abaipur Jamuna Shikder College · GPA 3.70 / 5.00 · Board: Jashore</div>
+              </div>
+              <div class="eduRight">2013</div>
+            </div>
+            <div class="eduRow">
+              <div class="eduLeft">
+                <div class="eduDegree">S.S.C. (Humanities)</div>
+                <div class="eduSchool">Abaipur High School · GPA 3.69 / 5.00 · Board: Jashore</div>
+              </div>
+              <div class="eduRight">2011</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section grid2">
+          <div>
+            <h2 class="sectionTitle">Languages</h2>
+            <ul class="bullets">
+              <li><b>Bangla:</b> Excellent (reading, writing, speaking)</li>
+              <li><b>English:</b> Good (reading, writing, speaking)</li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="sectionTitle">Computer Skills</h2>
+            <ul class="bullets">
+              <li>Windows</li>
+              <li>Microsoft Office (Word, Excel, PowerPoint)</li>
+              <li>Email and internet browsing</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="sectionTitle">Declaration</h2>
+          <p class="summary">
+            I hereby declare that the information provided in this resume is true, complete, and correct to the best of my knowledge and belief.
+          </p>
+          <div class="declFooter">
+            <div class="sigBlock">
+              <div class="sigLabel">Signature</div>
+              <div class="sigLine" aria-hidden="true"></div>
+              <div style="margin-top: 6px; font-size: 12.5px; color: rgba(11, 18, 32, 0.65); font-weight: 700">
+                Kazi Zahangir Hossain
+              </div>
+            </div>
+            <div class="sigBlock">
+              <div class="sigLabel">Date</div>
+              <div class="sigLine" aria-hidden="true"></div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
+
